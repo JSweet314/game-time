@@ -1,0 +1,11 @@
+/*Blocks organized idiomatically*/
+  /*position*/
+  /*Display/Box-model*/
+  /*Other*/
+
+canvas {
+  display: block;
+  margin: auto;
+  border: 1px solid black;
+}
+
