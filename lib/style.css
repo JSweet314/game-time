@@ -24,8 +24,10 @@ body {
  }
 
 canvas {
-  background-color: #000000;
-  border: 1px solid #ffffff;
+  background: url("/lib/images/Full Moon - background.png");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid grey;
   margin: 100px;
 }
 
@@ -35,7 +37,8 @@ canvas:hover {
 
 h1 {
   text-align: center;
-  color: #ffffff;
+  color: #CC0007;
+  text-shadow: 2px 2px 2px white;
   font-size: 60px;
   font-family: 'Audiowide', cursive;
   background-color: #000000;
