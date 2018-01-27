@@ -2,10 +2,44 @@
   /*position*/
   /*Display/Box-model*/
   /*Other*/
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+
+}
+
+.UI-background {
+  background: url("/lib/images/background.jpg" );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 
 canvas {
-  display: block;
-  margin: auto;
   background-color: #000000;
+  border: 1px solid #ffffff;
+  margin: 100px;
+}
+
+canvas:hover {
+  cursor: crosshair;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 60px;
+  font-family: 'Audiowide', cursive;
+  background-color: #000000;
+  user-select: none;
+  margin: 0;
 }
 
