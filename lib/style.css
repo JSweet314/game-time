@@ -1,7 +1,7 @@
 /*Blocks organized idiomatically*/
-  /*position*/
-  /*Display/Box-model*/
-  /*Other*/
+/*position*/
+/*Display/Box-model*/
+/*Other*/
 @import url('https://fonts.googleapis.com/css?family=Audiowide');
 
 html,
@@ -10,29 +10,13 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-
 }
 
-.UI-background {
-  background: url("/lib/images/background.jpg" );
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- }
-
-canvas {
-  background: url("/lib/images/Full Moon - background.png");
-  background-size: cover;
-  background-position: center;
-  border: 1px solid grey;
-  margin: 100px;
-}
-
-canvas:hover {
-  cursor: crosshair;
+body {
+  background: #000;
+  color: #fff;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 18px;
 }
 
 h1 {
@@ -46,3 +30,77 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  text-align: center;
+}
+
+.game-background {
+  background: url("/lib/images/background.jpg" );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-ui {
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-screen,
+.pause-screen,
+.endgame-screen {
+  background-color: #00000080;
+  opacity: 1;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.pause-screen,
+.endgame-screen {
+  display: none;
+}
+
+.start-screen__btn,
+.pause-screen__btn,
+.endgame-screen__btn {
+  background: red;
+  border-radius: 5px;
+  display: block;
+  font-size: 30px;
+  margin: 10px auto;
+  padding: 10px;
+  width: 200px;
+  color: white;
+  font-weight: bold;
+}
+
+.game-stats {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #00000080;
+}
+
+.game-stats p {
+  margin: 0;
+  padding: 0 5px;
+}
+
+#game-canvas {
+  background: url("/lib/images/Full Moon - background.png");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid grey;
+  margin: 100px;
+}
+
+#game-canvas:hover {
+  cursor: crosshair;
+}
