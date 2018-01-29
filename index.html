@@ -6,10 +6,27 @@
 </head>
 <body>
   <h1>MISSILE COMMAND</h1>
-  <div class="UI-background">
-  <canvas id="game" width="500" height="500">
-    <img src="/images/rmIE.png" alt="Rick explains the purpose of Internet Exploder">
-  </canvas>
+  <div class="game-background">
+    <div class="game-ui">
+      <article class="start-screen">
+        <h2>Press Start to Begin</h2>
+        <button class="start-screen__btn">START</button>
+      </article>
+      <article class="pause-screen">
+        <h2>Wave <span class="wave">1</span> Cleared</h2>
+        <button class="pause-screen__btn">ADVANCE</button>
+      </article>
+      <article class="endgame-screen">
+        <h2>GAME OVER</h2>
+        <button class="endgame-screen__btn">RESTART</button>
+      </article>
+    </div>
+    <article class="game-stats">
+      <p>Score: <span class="game-stats__score">0</span></p>
+    </article>
+    <canvas id="game-canvas" width="500" height="500">
+      <img src="/images/rmIE.png" alt="Rick explains the purpose of Internet Exploder">
+    </canvas>
   </div>
   <script src="main.bundle.js"></script>
 </body>
