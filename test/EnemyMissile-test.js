@@ -11,7 +11,7 @@ describe('EnemyMissile', () => {
     let y = -Math.random() * 500;
     missile = new EnemyMissile(x, y);
     game = new Game();
-    game.createCities().createBases()
+    game.createBuildings();
 
   });
 
