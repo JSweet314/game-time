@@ -1,4 +1,5 @@
 const {expect} = require('chai');
+const GamePiece = require('../lib/GamePiece.js');
 const Explosion = require('../lib/Explosion.js');
 
 describe('Explosion', () => {
@@ -12,6 +13,10 @@ describe('Explosion', () => {
     expect(explosion).to.be.an('object')
   });
 
+  it('should extend GamePiece', () => {
+    expect(explosion).to.be.an.instanceOf(GamePiece);
+  });
+
   it('should have a default radius', () => {
     expect(explosion.radius).to.equal(1);
   });
@@ -20,17 +25,26 @@ describe('Explosion', () => {
     expect(explosion.maxRadius).to.equal(25);
   });
 
-  it('should have x and y coordinate parameters', () => {
-    expect(explosion.x).to.equal(10);
-    expect(explosion.y).to.equal(10);
-  });
-
-  it('should be able to increment its radius', () => {
+  it('should be able to increment its radius up to it\'s max', () => {
     expect(explosion.radius).to.equal(1);
     expect(explosion.increment).to.equal(0.25);
 
-    explosion.incrementRadius();
+    explosion.updateRadius();
 
     expect(explosion.radius).to.equal(1.25);
   });
+
+  it('should implode after reaching it\'s max radius', () => {
+    expect(explosion.radius).to.equal(1);
+    expect(explosion.increment).to.equal(0.25);
+
+    explosion.radius = explosion.maxRadius;
+    explosion.updateRadius();
+
+    expect(explosion.increment).to.equal(-0.25);
+  });
+
+  it('should be able to draw itself (a circle)', () => {
+    expect(explosion).to.have.property('drawExplosion');
+  })
 });

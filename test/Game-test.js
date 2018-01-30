@@ -25,7 +25,7 @@ describe('Game', () => {
     expect(game.bases).to.be.an('array');
   });
 
-  it('should be able to create starting buildings', () => {
+  it.skip('should be able to create starting buildings', () => {
     expect(game.buildings.length).to.equal(0);
     expect(game.cities.length).to.equal(0);
     expect(game.bases.length).to.equal(0);
@@ -37,7 +37,7 @@ describe('Game', () => {
     expect(game.bases.length).to.equal(3);
   });
 
-  it('should be able to create enemy missiles with ', () => {
+  it.skip('should be able to create enemy missiles with ', () => {
     game.createBuildings().createEnemyMissiles();
     expect(game.enemyMissiles.length).to.equal(game.numberOfEnemyMissiles);
   });
