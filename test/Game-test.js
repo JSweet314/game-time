@@ -258,7 +258,7 @@ describe('Game', () => {
     expect(result).to.equal(rightBase);
   });
 
-  it('should fire from the middle base on a left third click if the left is out of ammo and the middle is not.', () => {
+  it('should fire from the middle base on a left third click if the left base is out of ammo and the middle is not.', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -274,7 +274,7 @@ describe('Game', () => {
     expect(result).to.equal(midBase);
   });
 
-  it('should fire from the right base on a left third click if the left and middle are out of ammo.', () => {
+  it('should fire from the right base on a left third click if the left base and middle are out of ammo.', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -291,7 +291,7 @@ describe('Game', () => {
     expect(result).to.equal(rightBase);
   });
 
-  it('should fire from the middle base on a right third click if the right is out of ammo.', () => {
+  it('should fire from the middle base on a right third click if the right base is out of ammo.', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -307,7 +307,7 @@ describe('Game', () => {
     expect(result).to.equal(midBase);
   });
 
-  it('should fire from the left base on a right third click if the right and middle are out of ammo.', () => {
+  it('should fire from the left base on a right third click if the right base and middle are out of ammo.', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -324,7 +324,7 @@ describe('Game', () => {
     expect(result).to.equal(leftBase);
   });
 
-  it('should fire from the right base if the right half is clicked and the middle is out of ammo', () => {
+  it('should fire from the right base if the right half is clicked and the middle base is out of ammo', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -340,7 +340,7 @@ describe('Game', () => {
     expect(result).to.equal(rightBase);
   });
 
-  it('should fire from the left base if the left half is clicked and the middle is out of ammo', () => {
+  it('should fire from the left base if the left half is clicked and the middle base is out of ammo', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -356,7 +356,7 @@ describe('Game', () => {
     expect(result).to.equal(leftBase);
   });
 
-  it('should fire from the left base if the right half is clicked and the middle and right are out of ammo', () => {
+  it('should fire from the left base if the right half is clicked and the middle base and right are out of ammo', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -373,7 +373,7 @@ describe('Game', () => {
     expect(result).to.equal(leftBase);
   });
 
-  it('should fire from the right base if the left half is clicked and the middle and left are out of ammo', () => {
+  it('should fire from the right base if the left half is clicked and the middle base and left are out of ammo', () => {
     let result, expectedResult;
 
     game.createBuildings();
