@@ -393,4 +393,62 @@ describe('Game', () => {
   it('should be able to update the score displayed to the user', () => {
     expect(game).to.have.a.property('updateScore');
   });
+
+  it('should end the game after a wave if only bases remain', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    game.determineGameState();
+    expect(game.gameOver).to.equal(false);
+
+    game.buildings = [];
+    game.enemyMissiles = [];
+    game.buildings.splice(0, 6);
+    game.determineGameState();
+
+    expect(game.gameOver).to.equal(true);
+  });
+
+  it('should pause between waves if cities remain', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    game.determineGameState();
+    expect(game.paused).to.equal(false);
+
+    game.enemyMissiles = [];
+    game.determineGameState();
+
+    expect(game.paused).to.equal(true);
+  });
+
+  it('should move to the next wave if not game over', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    game.determineGameState();
+    expect(game.wave).to.equal(1);
+
+    game.enemyMissiles = [];
+    game.determineGameState();
+
+    expect(game.wave).to.equal(2);
+  });
+
+  it('should increase enemy missiles with each wave', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    game.determineGameState();
+    expect(game.numberOfEnemyMissiles).to.equal(10);
+
+    game.enemyMissiles = [];
+    game.determineGameState();
+
+    expect(game.numberOfEnemyMissiles).to.equal(15);
+  });
+
+  it('should replenish all bases for successive waves', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    game.determineGameState();
+
+
+  });
 });
