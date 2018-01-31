@@ -86,6 +86,7 @@ h2 {
   top: 0px;
   left: 0px;
   background-color: #00000080;
+  user-select: none;
 }
 
 .game-stats p {
