@@ -168,22 +168,229 @@ describe('Game', () => {
   });
 
   it('should detect collisions between explosions and enemy fire', () => {
-    
+    game.explosions.push(new Explosion(250, 250));
+    game.enemyMissiles.push(new EnemyMissile(250, 250, 300, 300));
+
+    expect(game.explosions.length).to.equal(1);
+    expect(game.enemyMissiles.length).to.equal(1);
+
+    game.detectCollisions();
+
+    expect(game.enemyMissiles.length).to.equal(0);
+    expect(game.explosions.length).to.equal(2);
+    expect(game.score).to.equal(10);
+  });
+
+  it('should not increase the score if the explosion is not safely above the buildings', () => {
+    game.explosions.push(new Explosion(250, 450));
+    game.enemyMissiles.push(new EnemyMissile(250, 450));
+
+    expect(game.score).to.equal(0);
+
+    game.detectCollisions();
+
+    expect(game.score).to.equal(0);
+
+    game.enemyMissiles.push(new EnemyMissile(250, 420, 300, 300))
+    game.explosions[0].y = 420;
+
+    game.detectCollisions();
+
+    expect(game.score).to.equal(10);
+  });
+
+  it('should be able to reset itself', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    game.updateEnemyMissiles();
+    game.updateExplosions();
+    game.wave = 2;
+    game.numberOfEnemyMissiles = 15;
+
+    expect(game.buildings.length).to.equal(9);
+    expect(game.wave).to.equal(2);
+    expect(game.numberOfEnemyMissiles).to.equal(15);
+
+    game.resetGameState();
+
+    expect(game.buildings.length).to.equal(0);
+    expect(game.wave).to.equal(1);
+    expect(game.numberOfEnemyMissiles).to.equal(10);
+  });
+
+  it('should not allow a user to fire if they are out of missiles', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    leftBase.numberOfMissiles = 0;
+    midBase.numberOfMissiles = 0;
+    rightBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(25, 400);
+
+    expect(result).to.equal(null);
+  });
+
+  it('should be able to fire from the closest base to the point of click', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    result = game.determineClosestFiringBase(25, 400);
+
+    expect(result).to.equal(leftBase);
+
+    result = game.determineClosestFiringBase(170, 400);
+
+    expect(result).to.equal(midBase);
+
+    result = game.determineClosestFiringBase(400, 400);
+
+    expect(result).to.equal(rightBase);
+  });
+
+  it('should fire from the middle base on a left third click if the left is out of ammo and the middle is not.', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    leftBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(25, 400);
+
+    expect(result).to.equal(midBase);
+  });
+
+  it('should fire from the right base on a left third click if the left and middle are out of ammo.', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    leftBase.numberOfMissiles = 0;
+    midBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(25, 400);
+
+    expect(result).to.equal(rightBase);
+  });
+
+  it('should fire from the middle base on a right third click if the right is out of ammo.', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    rightBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(400, 400);
+
+    expect(result).to.equal(midBase);
+  });
+
+  it('should fire from the left base on a right third click if the right and middle are out of ammo.', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    rightBase.numberOfMissiles = 0;
+    midBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(400, 400);
+
+    expect(result).to.equal(leftBase);
+  });
+
+  it('should fire from the right base if the right half is clicked and the middle is out of ammo', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    midBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(251, 400);
+
+    expect(result).to.equal(rightBase);
+  });
+
+  it('should fire from the left base if the left half is clicked and the middle is out of ammo', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    midBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(250, 400);
+
+    expect(result).to.equal(leftBase);
+  });
+
+  it('should fire from the left base if the right half is clicked and the middle and right are out of ammo', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    midBase.numberOfMissiles = 0;
+    rightBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(251, 400);
+
+    expect(result).to.equal(leftBase);
+  });
+
+  it('should fire from the right base if the left half is clicked and the middle and left are out of ammo', () => {
+    let result, expectedResult;
+
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let leftBase, midBase, rightBase;
+
+    [leftBase, midBase, rightBase] = game.bases;
+
+    midBase.numberOfMissiles = 0;
+    leftBase.numberOfMissiles = 0;
+
+    result = game.determineClosestFiringBase(250, 400);
+
+    expect(result).to.equal(rightBase);
+  });
+
+  it('should be able to update the score displayed to the user', () => {
+    expect(game).to.have.a.property('updateScore');
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
