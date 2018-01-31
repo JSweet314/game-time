@@ -28,7 +28,6 @@ describe('Game', () => {
   });
 
   it('should be able to store its buildings in the appropriate arrays', () => {
-    expect(game.cities).to.deep.equal([]);
     expect(game.bases).to.deep.equal([]);
     expect(game.buildings).to.deep.equal([]);
   });
@@ -37,6 +36,7 @@ describe('Game', () => {
     game.createBuildings();
 
     expect(game.buildings.length).to.equal(9);
+    expect(game.bases.length).to.equal(3);
 
     expect(game.buildings[0]).to.be.an.instanceOf(Building);
     expect(game.buildings[game.buildings.length -1]).to.be.an.instanceOf(Base);
@@ -135,4 +135,55 @@ describe('Game', () => {
     expect(game.numberOfEnemyMissiles).to.equal(15);
     expect(game.maxEnemyHeight).to.equal(-600);
   });
+
+  it('should be able to update explosion radii', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let testMissile = game.enemyMissiles[0];
+
+    testMissile.y = testMissile.yTarget;
+    game.updateEnemyMissiles();
+
+    expect(game.explosions[0].radius).to.equal(1);
+
+    game.updateExplosions();
+
+    expect(game.explosions[0].radius).to.equal(1.25);
+  });
+
+  it('should forget an explosion that has imploded', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+    let testMissile = game.enemyMissiles[0];
+
+    testMissile.y = testMissile.yTarget;
+    game.updateEnemyMissiles();
+
+    expect(game.explosions.length).to.equal(1);
+
+    game.explosions[0].radius = 0.5;
+    game.updateExplosions();
+
+    expect(game.explosions.length).to.equal(0);
+  });
+
+  it('should detect collisions between explosions and enemy fire', () => {
+    
+  });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
