@@ -16,8 +16,4 @@ describe('GamePiece', () => {
     expect(gamePiece.x).to.equal(10);
     expect(gamePiece.y).to.equal(10);
   });
-
-  it('should not be destroyed by default', () => {
-    expect(gamePiece.destroyed).to.equal(false);
-  });
 });
