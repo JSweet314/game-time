@@ -426,7 +426,7 @@ describe('Game', () => {
     game.buildings.splice(0, 6);
     game.determineGameState();
 
-    expect(game.gameOver).to.equal(true);
+    expect(game.gameOver).to.be.true;
   });
 
   it('should pause between waves if cities remain', () => {
@@ -438,7 +438,7 @@ describe('Game', () => {
     game.enemyMissiles = [];
     game.determineGameState();
 
-    expect(game.paused).to.equal(true);
+    expect(game.paused).to.be.true;
   });
 
   it('should move to the next wave if not game over', () => {
@@ -505,6 +505,6 @@ describe('Game', () => {
     game.buildings.splice(0, 6);
     game.determineGameState();
 
-    expect(game.gameOver).to.equal(true);
+    expect(game.gameOver).to.be.true;
   });
 });
