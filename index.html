@@ -21,12 +21,24 @@
         <button class="endgame-screen__btn">RESTART</button>
       </article>
     </div>
-    <article class="game-stats">
-      <p>Score: <span class="game-stats__score">0</span></p>
-    </article>
-    <canvas id="game-canvas" width="500" height="500">
-      <img src="/images/rmIE.png" alt="Rick explains the purpose of Internet Exploder">
-    </canvas>
+    <div class="canvas-container">
+      <canvas id="game-canvas" width="500" height="500">
+        <img src="/images/rmIE.png" alt="Rick explains the purpose of Internet Exploder">
+      </canvas>
+      <article class="game-stats">
+        <p>Score: <span class="game-stats__score">0</span></p>
+      </article>
+      <article>
+        <p class="user-instructions">
+          <span class="city-indicators">^ ^ ^</span><span class="city-indicators">^ ^ ^</span>
+          <br>DEFEND YOUR CITIES!!!<br>
+          Click to Launch Your Defense Missiles<br><br>
+          10 Points Per Enemy Missile Destroyed<br>
+          Each Base Gets ONLY 10 Missiles Per Wave<br>
+          Advance to the Next Wave If At Least One City Remains
+        </p>
+      </article>
+    </div>
   </div>
   <script src="main.bundle.js"></script>
 </body>
