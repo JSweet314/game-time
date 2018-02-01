@@ -25,7 +25,7 @@ describe('Explosion', () => {
     expect(explosion.maxRadius).to.equal(25);
   });
 
-  it('should be able to increment its radius up to it\'s max', () => {
+  it('should be able to increment its radius up to its max', () => {
     expect(explosion.radius).to.equal(1);
     expect(explosion.increment).to.equal(0.25);
 
@@ -34,7 +34,7 @@ describe('Explosion', () => {
     expect(explosion.radius).to.equal(1.25);
   });
 
-  it('should implode after reaching it\'s max radius', () => {
+  it('should implode after reaching its max radius', () => {
     expect(explosion.radius).to.equal(1);
     expect(explosion.increment).to.equal(0.25);
 
