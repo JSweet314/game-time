@@ -411,7 +411,9 @@ describe('Game', () => {
     expect(testMissile.x).to.not.equal(testMissile.xStart);
   });
 
-  it('')
+  it('should be able to have user missiles draw themselves', () => {
+    expect(game).to.have.a.property('drawUserMissiles');
+  })
 
   it('should be able to update the score displayed to the user', () => {
     expect(game).to.have.a.property('updateScore');
