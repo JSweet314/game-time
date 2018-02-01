@@ -51,6 +51,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .start-screen,
@@ -81,12 +82,17 @@ h2 {
   font-weight: bold;
 }
 
+.canvas-container {
+  position: relative;
+}
+
 .game-stats {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   background-color: #00000080;
   user-select: none;
+  margin: 102px 0 0 2px;
 }
 
 .game-stats p {
@@ -94,12 +100,28 @@ h2 {
   padding: 0 5px;
 }
 
+.user-instructions {
+  text-align: center;
+  margin-top: 0;
+  color: red;
+  user-select: none;
+}
+
+.city-indicators {
+  letter-spacing: 15px;
+  margin: 0 38px 0 56px;
+}
+
 #game-canvas {
   background: url("/lib/images/Full Moon - background.png");
   background-size: cover;
   background-position: center;
   border: 1px solid grey;
-  margin: 100px;
+  margin: 100px 0 0 0;
+}
+
+.white {
+  color: white;
 }
 
 #game-canvas:hover {
