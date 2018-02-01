@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const Missile = require('../lib/Missile.js');
 const EnemyMissile = require('../lib/EnemyMissile.js');
 const Base = require('../lib/Base.js');
 const Explosion = require('../lib/Explosion.js')
@@ -68,7 +69,7 @@ describe('Game', () => {
     expect(game.enemyMissiles[0].y).to.be.within(game.maxEnemyHeight, 0);
   });
 
-  it('should have missiles move towards their target', () => {
+  it('should have enemy missiles move towards their target', () => {
     game.createBuildings();
     game.createEnemyMissiles();
 
@@ -274,7 +275,7 @@ describe('Game', () => {
     expect(result).to.equal(midBase);
   });
 
-  it('should fire from the right base on a left third click if the left base and middle are out of ammo.', () => {
+  it('should fire from the right base on a left third click if the left and middle base are out of ammo.', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -307,7 +308,7 @@ describe('Game', () => {
     expect(result).to.equal(midBase);
   });
 
-  it('should fire from the left base on a right third click if the right base and middle are out of ammo.', () => {
+  it('should fire from the left base on a right third click if the right and middle base are out of ammo.', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -356,7 +357,7 @@ describe('Game', () => {
     expect(result).to.equal(leftBase);
   });
 
-  it('should fire from the left base if the right half is clicked and the middle base and right are out of ammo', () => {
+  it('should fire from the left base if the right half is clicked and the middle and right base are out of ammo', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -373,7 +374,7 @@ describe('Game', () => {
     expect(result).to.equal(leftBase);
   });
 
-  it('should fire from the right base if the left half is clicked and the middle base and left are out of ammo', () => {
+  it('should fire from the right base if the left half is clicked and the middle and left base are out of ammo', () => {
     let result, expectedResult;
 
     game.createBuildings();
@@ -389,6 +390,28 @@ describe('Game', () => {
 
     expect(result).to.equal(rightBase);
   });
+
+  it('should be able to fire a missile from the appropriate base when the user clicks', () => {
+    game.createBuildings();
+    game.createReturnFire(50, 50);
+
+    expect(game.returnFire.length).to.equal(1);
+    expect(game.returnFire[0]).to.be.an.instanceOf(Missile);
+  });
+
+  it('should be able to update the position of user fired missiles', () => {
+    game.createBuildings();
+    game.createReturnFire(50, 50);
+    let testMissile = game.returnFire[0];
+
+    expect(testMissile.x).to.equal(testMissile.xStart);
+
+    game.updateUserMissiles();
+
+    expect(testMissile.x).to.not.equal(testMissile.xStart);
+  });
+
+  it('')
 
   it('should be able to update the score displayed to the user', () => {
     expect(game).to.have.a.property('updateScore');
