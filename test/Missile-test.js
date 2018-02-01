@@ -63,8 +63,8 @@ describe('Missile', () => {
 
     missile.moveTowardsTarget();
 
-    expect(Math.abs(missile.x - missile.xStart)).to.not.equal(0);
-    expect(Math.abs(missile.y - missile.yStart)).to.not.equal(0);
+    expect(missile.x).to.not.equal(missile.xStart);
+    expect(missile.y).to.not.equal(missile.yStart);
   });
 
   it('should be able to explode', () => {
