@@ -19,7 +19,7 @@ describe('Missile', () => {
   });
 
   it('should have a velocity', () => {
-    expect(missile.velocity).to.equal(1);
+    expect(missile.velocity).to.equal(2);
   });
 
   it('should know where it started', () => {
