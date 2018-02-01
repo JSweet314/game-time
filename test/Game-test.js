@@ -444,11 +444,46 @@ describe('Game', () => {
     expect(game.numberOfEnemyMissiles).to.equal(15);
   });
 
-  it('should replenish all bases for successive waves', () => {
+  it('should replenish all bases if moving to the next wave', () => {
     game.createBuildings();
     game.createEnemyMissiles();
+
+    game.buildings.splice(6, 3);
     game.determineGameState();
 
+    expect(game.buildings.length).to.equal(6);
 
+    game.enemyMissiles = [];
+    game.determineGameState();
+
+    game.bases.forEach(base => {
+      expect(base.numberOfMissiles).to.equal(10);
+    });
+    expect(game.buildings[6].numberOfMissiles).to.equal(10);
+    expect(game.buildings[7].numberOfMissiles).to.equal(10);
+    expect(game.buildings[8].numberOfMissiles).to.equal(10);
+    expect(game.buildings.length).to.equal(9);
+    expect(game.wave).to.equal(2);
+  });
+
+  it('should create new enemy missiles for the next wave', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+
+    game.enemyMissiles = [];
+    game.determineGameState();
+
+    expect(game.enemyMissiles.length).to.equal(15);
+  });
+
+  it('should end the game if all cities are destroyed', () => {
+    game.createBuildings();
+    game.createEnemyMissiles();
+
+    game.enemyMissiles = [];
+    game.buildings.splice(0, 6);
+    game.determineGameState();
+
+    expect(game.gameOver).to.equal(true);
   });
 });
