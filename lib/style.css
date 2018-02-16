@@ -58,15 +58,26 @@ h2 {
 .start-screen,
 .pause-screen,
 .endgame-screen {
-  background-color: #00000080;
+  background-color: #00000000;
   opacity: 1;
   color: #ffffff;
   padding: 10px;
 }
 
 .pause-screen,
-.endgame-screen {
+.endgame-screen,
+.initials {
   display: none;
+}
+
+.initials {
+  text-align: center;
+  width: 84%;
+  margin: auto;
+  display: inherit;
+  position: relative;
+  bottom: 8px;
+  font-weight: bold;
 }
 
 .start-screen__btn,
@@ -91,7 +102,7 @@ h2 {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #00000080;
+  background-color: #00000000;
   user-select: none;
   margin: 102px 0 0 2px;
 }
@@ -127,4 +138,123 @@ h2 {
 
 #game-canvas:hover {
   cursor: crosshair;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.skynet {
+  background-color: black;
+  color: black;
+  border: none;
+  user-select: none;
+  cursor: default;
+}
+
+.skynet:focus {
+  outline: none;
 }
