@@ -1,7 +1,7 @@
 const {expect} = require('chai');
-const Missile = require('../lib/Missile.js')
-const Game = require('../lib/Game.js');
-const EnemyMissile = require('../lib/EnemyMissile.js');
+const Missile = require('../src/Missile.js')
+const Game = require('../src/Game.js');
+const EnemyMissile = require('../src/EnemyMissile.js');
 
 describe('EnemyMissile', () => {
   let missile, game;
@@ -9,10 +9,10 @@ describe('EnemyMissile', () => {
   beforeEach(()=> {
     let x = Math.random() * 500;
     let y = -Math.random() * 500;
+
     missile = new EnemyMissile(x, y);
     game = new Game();
     game.createBuildings();
-
   });
 
   it('should be an object', () => {

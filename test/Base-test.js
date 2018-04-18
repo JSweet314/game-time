@@ -1,7 +1,6 @@
 const { expect } = require('chai');
-const Building = require('../lib/Building.js');
-const Missile = require('../lib/Missile.js');
-const Base = require('../lib/Base.js');
+const Building = require('../src/Building.js');
+const Base = require('../src/Base.js');
 
 
 describe('Base', () => {

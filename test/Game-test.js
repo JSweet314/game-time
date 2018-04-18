@@ -1,11 +1,10 @@
 const { expect } = require('chai');
-const Missile = require('../lib/Missile.js');
-const EnemyMissile = require('../lib/EnemyMissile.js');
-const Base = require('../lib/Base.js');
-const Explosion = require('../lib/Explosion.js')
-const Building = require('../lib/Building.js');
-
-const Game = require('../lib/Game.js');
+const Missile = require('../src/Missile.js');
+const EnemyMissile = require('../src/EnemyMissile.js');
+const Base = require('../src/Base.js');
+const Explosion = require('../src/Explosion.js')
+const Building = require('../src/Building.js');
+const Game = require('../src/Game.js');
 
 describe('Game', () => {
   let game;
@@ -84,46 +83,6 @@ describe('Game', () => {
     });
   });
 
-  it('should no longer have enemy missiles that have reached their target', () => {
-    game.createBuildings();
-    game.createEnemyMissiles();
-    let testMissile = game.enemyMissiles[0];
-
-    expect(game.enemyMissiles.length).to.equal(10);
-
-    testMissile.y = testMissile.yTarget;
-    game.updateEnemyMissiles();
-
-    expect(game.enemyMissiles.length).to.equal(9);
-  });
-
-  it('should lose a building if an enemy missile reaches its target', () => {
-    game.createBuildings();
-    game.createEnemyMissiles();
-    let testMissile = game.enemyMissiles[0];
-
-    expect(game.buildings.length).to.equal(9);
-
-    testMissile.y = testMissile.yTarget;
-    game.updateEnemyMissiles();
-
-    expect(game.buildings.length).to.equal(8);
-  });
-
-  it('should have a new explosion when an enemy missile reaches its target', () => {
-    game.createBuildings();
-    game.createEnemyMissiles();
-    let testMissile = game.enemyMissiles[0];
-
-    expect(game.explosions.length).to.equal(0);
-
-    testMissile.y = testMissile.yTarget;
-    game.updateEnemyMissiles();
-
-    expect(game.explosions.length).to.equal(1);
-    expect(game.explosions[0]).to.be.an.instanceOf(Explosion);
-  });
-
   it('should be able to draw its enemy missiles', () => {
     expect(game).to.have.a.property('drawEnemyMissiles');
   });
@@ -135,37 +94,6 @@ describe('Game', () => {
 
     expect(game.numberOfEnemyMissiles).to.equal(15);
     expect(game.maxEnemyHeight).to.equal(-600);
-  });
-
-  it('should be able to update explosion radii', () => {
-    game.createBuildings();
-    game.createEnemyMissiles();
-    let testMissile = game.enemyMissiles[0];
-
-    testMissile.y = testMissile.yTarget;
-    game.updateEnemyMissiles();
-
-    expect(game.explosions[0].radius).to.equal(1);
-
-    game.updateExplosions();
-
-    expect(game.explosions[0].radius).to.equal(1.25);
-  });
-
-  it('should forget an explosion that has imploded', () => {
-    game.createBuildings();
-    game.createEnemyMissiles();
-    let testMissile = game.enemyMissiles[0];
-
-    testMissile.y = testMissile.yTarget;
-    game.updateEnemyMissiles();
-
-    expect(game.explosions.length).to.equal(1);
-
-    game.explosions[0].radius = 0.5;
-    game.updateExplosions();
-
-    expect(game.explosions.length).to.equal(0);
   });
 
   it('should detect collisions between explosions and enemy fire', () => {
