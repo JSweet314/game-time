@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const Building = require('../lib/Building.js');
-const GamePiece = require('../lib/GamePiece.js');
+const Building = require('../src/Building.js');
+const GamePiece = require('../src/GamePiece.js');
 
 describe('Building', () => {
   let building;
