@@ -1,1 +1,1 @@
-web: npm startga
+web: npm start

@@ -59,7 +59,7 @@ function returnFire(event) {
   });
 
   if (audioTest && event.offsetY < 420) {
-    let launchAudio = new Audio('lib/audio/missile-launch.wav');
+    let launchAudio = new Audio('src/audio/missile-launch.wav');
 
     launchAudio.play();
   }
