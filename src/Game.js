@@ -18,8 +18,8 @@ module.exports = class Game {
     this.paused = false;
     this.returnFire = [];
     this.score = 0;
-    this.baseImage = "lib/images/Tower.png";
-    this.cityImage = "lib/images/House.png"
+    this.baseImage = "src/images/Tower.png";
+    this.cityImage = "src/images/House.png"
     this.wave = 1;
   }
 

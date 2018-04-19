@@ -35,7 +35,7 @@ h2 {
 }
 
 .game-background {
-  background: url("/lib/images/background.jpg" );
+  background: url("/src/images/background.jpg" );
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -124,7 +124,7 @@ h2 {
 }
 
 #game-canvas {
-  background: url("/lib/images/Full Moon - background.png");
+  background: url("/src/images/Full Moon - background.png");
   background-size: cover;
   background-position: center;
   border: 1px solid grey;
